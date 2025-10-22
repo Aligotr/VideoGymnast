@@ -2,6 +2,7 @@
 #
 _test/
 *.zip
+*_lfs.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
