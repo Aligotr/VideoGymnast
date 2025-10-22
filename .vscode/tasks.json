@@ -1,0 +1,69 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "System: clean build",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-c", "rm -rf build dist"],
+      "windows": {
+        "command": "cmd",
+        "args": [
+          "/c",
+          "rd /s /q dist || echo Folder (dist) not found & rd /s /q build || echo Folder (build) not found"
+        ]
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "PyInstaller: build by mainFile",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-m",
+        "PyInstaller",
+        "--noconfirm",
+        "--clean",
+        "--name",
+        "${workspaceFolderBasename}",
+        "--add-data",
+        "'ffmpeg;ffmpeg'",
+        "src/main.py"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "PyInstaller: build",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "PyInstaller", "--noconfirm", "--clean", "app.spec"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build: PyInstaller (clean+build)",
+      "dependsOn": ["System: clean build", "PyInstaller: build"],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

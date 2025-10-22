@@ -1,0 +1,7 @@
+#
+loguru
+rich
+#
+humanfriendly
+pymediainfo
+ffmpeg_progress_yield
