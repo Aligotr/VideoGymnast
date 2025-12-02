@@ -6,7 +6,6 @@
   "files.associations": {
     "*.spec": "python"
   },
-  "pylint.cwd": "${workspaceFolder}/src",
   "cSpell.customDictionaries": {
     "project-words": {
       "name": "project-words",
@@ -17,5 +16,6 @@
     "custom": true,
     "internal-terms": false
   },
+  "pylint.cwd": "${workspaceFolder}/src",
   "pylint.ignorePatterns": ["*.spec"]
 }
